@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Header from "./Header"
 
 function Tasks() {
   const [inputValue, setInputValue] = useState("")
@@ -10,10 +9,6 @@ function Tasks() {
   }
   return (
     <div>
-      <Header>
-        <h1>Add a task</h1>
-      </Header>
-
       <input
         className="input"
         type="text"
