@@ -1,12 +1,12 @@
-import { useState } from "react";
-import Header from "./Header";
+import { useState } from "react"
+import Header from "./Header"
 
 function Tasks() {
-  const [inputValue, setInputValue] = useState("");
-  const [messages, setMessages] = useState(["Fazer a janta", "Estudar"]);
+  const [inputValue, setInputValue] = useState("")
+  const [messages, setMessages] = useState(["Fazer a janta", "Estudar"])
 
   function handleButtonClick() {
-    setMessages([...messages, inputValue]);
+    setMessages([...messages, inputValue])
   }
   return (
     <div>
@@ -28,13 +28,13 @@ function Tasks() {
 
       <div>
         <ul>
-          {messages.map((messages) => {
-            return <li>{messages}</li>;
+          {messages.map((message) => {
+            return <li key={message}>{message}</li>
           })}
         </ul>
       </div>
     </div>
-  );
+  )
 }
 
-export default Tasks;
+export default Tasks
