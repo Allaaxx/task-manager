@@ -2,25 +2,33 @@ import CheckIcon from "../assets/icons/check.svg?react"
 import LoaderIcon from "../assets/icons/loader.svg?react"
 import DetailsIcon from "../assets/icons/details.svg?react"
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, handleTaskCheckboxClick }) => {
   const getContainerClasses = () => {
     if (task.status === "done") {
       return "bg-pink-500/10 text-pink-500"
     }
+
     if (task.status === "in_progress") {
       return "bg-[#FFAA04]/10 text-[#FFAA04]"
     }
-    return "bg-[#35383E]/10 text-[#35383E]"
+
+    if (task.status === "not_started") {
+      return "bg-[#35383E]/10 text-[#35383E]"
+    }
   }
 
   const getCheckboxClasses = () => {
     if (task.status === "done") {
       return "bg-pink-500 text-white"
     }
+
     if (task.status === "in_progress") {
       return "bg-[#FFAA04] text-white"
     }
-    return "bg-[#35383E]/5 text-[#35383E]"
+
+    if (task.status === "not_started") {
+      return "bg-[#35383E]/15 text-[#35383E]"
+    }
   }
 
   return (
@@ -36,7 +44,7 @@ const TaskItem = ({ task }) => {
               type="checkbox"
               checked={task.status === "done"}
               className="absolute h-full w-full cursor-pointer opacity-0"
-              readOnly
+              onChange={() => handleTaskCheckboxClick(task.id)}
             />
             {task.status === "done" && <CheckIcon className="h-4 w-4" />}
             {task.status === "in_progress" && (
