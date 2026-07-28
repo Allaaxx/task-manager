@@ -1,7 +1,11 @@
+import { useState } from "react"
+
 import { AddIcon, TrashIcon } from "../assets/icons"
+import AddTaskDialog from "./AddTaskDialog"
 import Button from "./Button"
 
 const TaskHeader = () => {
+  const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false)
   return (
     <div className="flex w-full justify-between">
       <div>
@@ -17,10 +21,11 @@ const TaskHeader = () => {
           Limpar tarefas
         </Button>
 
-        <Button>
+        <Button onClick={() => setAddTaskDialogIsOpen(true)}>
           <AddIcon />
           Nova Tarefa
         </Button>
+        <AddTaskDialog isOpen={addTaskDialogIsOpen} />
       </div>
     </div>
   )
