@@ -28,6 +28,9 @@ const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
   }
 
   const handleSaveClick = () => {
+    if (!title.trim() || time.trim() || !description.trim()) {
+      return alert("Preencha todos os campos.")
+    }
     handleTaskSubmit({
       id: v4(),
       title,
