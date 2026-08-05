@@ -11,10 +11,21 @@ import TimeSelect from "./TimeSelect"
 
 const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
   const [title, setTitle] = useState("")
-  const [time, setTime] = useState("")
+  const [time, setTime] = useState("morning")
   const [description, setDescription] = useState("")
 
-  const nodeRef = useRef()
+  const nodeRef = useRef(null)
+
+  const resetForm = () => {
+    setTitle("")
+    setTime("")
+    setDescription("")
+  }
+
+  const handleCancel = () => {
+    resetForm()
+    handleClose()
+  }
 
   const handleSaveClick = () => {
     handleTaskSubmit({
@@ -24,8 +35,10 @@ const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
       description,
       status: "not_started",
     })
+    resetForm()
     handleClose()
   }
+
   return (
     <CSSTransition
       nodeRef={nodeRef}
@@ -68,12 +81,13 @@ const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
                   value={description}
                   onChange={(event) => setDescription(event.target.value)}
                 />
+
                 <div className="flex gap-3">
                   <Button
                     size="large"
                     variant="secondary"
                     className="w-full"
-                    onClick={handleClose}
+                    onClick={handleCancel}
                   >
                     Cancelar
                   </Button>
