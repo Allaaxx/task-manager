@@ -41,41 +41,6 @@
       "description": "Planejar as prioridades da manhã",
       "time": "evening",
       "status": "done"
-    },
-    {
-      "id": "OV_8HLLb5y0",
-      "title": "dasdasd",
-      "time": "morning",
-      "description": "daasdasd",
-      "status": "not_started"
-    },
-    {
-      "id": "9A-7lsVEY90",
-      "title": "asdasd",
-      "time": "morning",
-      "description": "dadad",
-      "status": "not_started"
-    },
-    {
-      "id": "7b0LcIW8Qz4",
-      "title": "asdasdas",
-      "time": "evening",
-      "description": "dasdasd",
-      "status": "not_started"
-    },
-    {
-      "id": "9bKZDYmY_K8",
-      "title": "dasdada",
-      "time": "morning",
-      "description": "dasdada",
-      "status": "not_started"
-    },
-    {
-      "id": "QxPye1tDMqU",
-      "title": "dsadasd",
-      "time": "afternoon",
-      "description": "dasdasd",
-      "status": "not_started"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
