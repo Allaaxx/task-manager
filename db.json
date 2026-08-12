@@ -1,0 +1,46 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Estudar FSC",
+      "description": "Estudar para a prova de FSC",
+      "time": "morning",
+      "status": "in_progress"
+    },
+    {
+      "id": 2,
+      "title": "Tomar café da manhã",
+      "description": "Café reforçado antes de começar o dia",
+      "time": "morning",
+      "status": "done"
+    },
+    {
+      "id": 3,
+      "title": "Fazer caminhada",
+      "description": "Caminhada de 30 minutos no parque",
+      "time": "afternoon",
+      "status": "not_started"
+    },
+    {
+      "id": 4,
+      "title": "Organizar mesa de trabalho",
+      "description": "Limpar e arrumar a escrivaninha",
+      "time": "afternoon",
+      "status": "not_started"
+    },
+    {
+      "id": 5,
+      "title": "Responder e-mails",
+      "description": "Verificar caixa de entrada e responder clientes",
+      "time": "evening",
+      "status": "in_progress"
+    },
+    {
+      "id": 6,
+      "title": "Revisar tarefas do dia",
+      "description": "Planejar as prioridades da manhã",
+      "time": "evening",
+      "status": "done"
+    }
+  ]
+}
