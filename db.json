@@ -1,46 +1,82 @@
 {
   "tasks": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Estudar FSC",
       "description": "Estudar para a prova de FSC",
       "time": "morning",
       "status": "in_progress"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Tomar café da manhã",
       "description": "Café reforçado antes de começar o dia",
       "time": "morning",
       "status": "done"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Fazer caminhada",
       "description": "Caminhada de 30 minutos no parque",
       "time": "afternoon",
       "status": "not_started"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Organizar mesa de trabalho",
       "description": "Limpar e arrumar a escrivaninha",
       "time": "afternoon",
       "status": "not_started"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Responder e-mails",
       "description": "Verificar caixa de entrada e responder clientes",
       "time": "evening",
       "status": "in_progress"
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Revisar tarefas do dia",
       "description": "Planejar as prioridades da manhã",
       "time": "evening",
       "status": "done"
+    },
+    {
+      "id": "OV_8HLLb5y0",
+      "title": "dasdasd",
+      "time": "morning",
+      "description": "daasdasd",
+      "status": "not_started"
+    },
+    {
+      "id": "9A-7lsVEY90",
+      "title": "asdasd",
+      "time": "morning",
+      "description": "dadad",
+      "status": "not_started"
+    },
+    {
+      "id": "7b0LcIW8Qz4",
+      "title": "asdasdas",
+      "time": "evening",
+      "description": "dasdasd",
+      "status": "not_started"
+    },
+    {
+      "id": "9bKZDYmY_K8",
+      "title": "dasdada",
+      "time": "morning",
+      "description": "dasdada",
+      "status": "not_started"
+    },
+    {
+      "id": "QxPye1tDMqU",
+      "title": "dsadasd",
+      "time": "afternoon",
+      "description": "dasdasd",
+      "status": "not_started"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
