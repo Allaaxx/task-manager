@@ -4,14 +4,20 @@ import PropTypes from "prop-types"
 import { useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { CSSTransition } from "react-transition-group"
-import { v4 } from "uuid"
 
+import { LoaderIcon } from "../assets/icons"
 import Button from "./Button"
 import Input from "./Input"
 import TimeSelect from "./TimeSelect"
 
-const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
+const AddTaskDialog = ({
+  isOpen,
+  handleClose,
+  onSubmitSuccess,
+  onSubmitError,
+}) => {
   const [errors, setErrors] = useState([])
+  const [savingLoading, setSavingLoading] = useState(false)
 
   const nodeRef = useRef(null)
   const titleRef = useRef()
@@ -22,7 +28,8 @@ const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
     handleClose()
   }
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
+    setSavingLoading(true)
     const newErrors = []
     const title = titleRef.current.value
     const description = descriptionRef.current.value
@@ -52,20 +59,34 @@ const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
     setErrors(newErrors)
 
     if (newErrors.length > 0) {
-      return
+      return setSavingLoading(false)
     }
 
     if (!title.trim() || !time.trim() || !description.trim()) {
       return alert("Preencha todos os campos.")
     }
 
-    handleTaskSubmit({
-      id: v4(),
-      title: title,
+    const task = {
+      title,
       time,
       description,
       status: "not_started",
+    }
+
+    const response = await fetch("http://localhost:3000/tasks", {
+      method: "POST",
+      body: JSON.stringify(task),
     })
+
+    if (!response.ok) {
+      setSavingLoading(false)
+      onSubmitError()
+    }
+
+    const createdTask = await response.json()
+
+    onSubmitSuccess(createdTask)
+    setSavingLoading(false)
     handleClose()
   }
 
@@ -125,8 +146,13 @@ const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
                     size="large"
                     className="w-full"
                     onClick={handleSaveClick}
+                    disabled={savingLoading}
                   >
-                    Salvar
+                    {savingLoading ? (
+                      <LoaderIcon className="animate-spin text-brand-white" />
+                    ) : (
+                      "Salvar"
+                    )}
                   </Button>
                 </div>
               </div>
@@ -142,7 +168,8 @@ const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
 AddTaskDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  handleTaskSubmit: PropTypes.func.isRequired,
+  onSubmitSuccess: PropTypes.func.isRequired,
+  onSubmitError: PropTypes.func.isRequired,
 }
 
 export default AddTaskDialog
