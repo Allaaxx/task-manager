@@ -10,27 +10,23 @@ import Input from "./Input"
 import TimeSelect from "./TimeSelect"
 
 const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
-  const [title, setTitle] = useState("")
-  const [time, setTime] = useState("morning")
-  const [description, setDescription] = useState("")
-
   const [errors, setErrors] = useState([])
 
   const nodeRef = useRef(null)
-
-  const resetForm = () => {
-    setTitle("")
-    setTime("")
-    setDescription("")
-  }
+  const titleRef = useRef()
+  const descriptionRef = useRef()
+  const timeRef = useRef()
 
   const handleCancel = () => {
-    resetForm()
     handleClose()
   }
 
   const handleSaveClick = () => {
     const newErrors = []
+    const title = titleRef.current.value
+    const description = descriptionRef.current.value
+    const time = timeRef.current.value
+
     if (!title.trim()) {
       newErrors.push({
         field: "title",
@@ -64,12 +60,11 @@ const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
 
     handleTaskSubmit({
       id: v4(),
-      title,
+      title: title,
       time,
       description,
       status: "not_started",
     })
-    resetForm()
     handleClose()
   }
 
@@ -102,24 +97,18 @@ const AddTaskDialog = ({ isOpen, handleClose, handleTaskSubmit }) => {
                   id="title"
                   label="Título"
                   placeholder="Name"
-                  value={title}
-                  onChange={(event) => setTitle(event.target.value)}
                   errorMessage={titleError?.message}
+                  ref={titleRef}
                 />
 
-                <TimeSelect
-                  value={time}
-                  onChange={(event) => setTime(event.target.value)}
-                  errorMessage={timeError?.message}
-                />
+                <TimeSelect ref={timeRef} errorMessage={timeError?.message} />
 
                 <Input
                   id="description"
                   label="Descrição"
                   placeholder="Descreva a Tarefa"
-                  value={description}
-                  onChange={(event) => setDescription(event.target.value)}
                   errorMessage={descriptionError?.message}
+                  ref={descriptionRef}
                 />
 
                 <div className="flex gap-3">
