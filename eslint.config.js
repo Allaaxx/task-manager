@@ -24,11 +24,18 @@ export default defineConfig([
       react: reactPlugin,
       "simple-import-sort": simpleImportSort,
     },
+    settings: {
+      react: {
+        version: "19.2.7",
+      },
+    },
     rules: {
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
       semi: ["error", "always"],
-      "react/prop-types": "off",
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error",
+      "react/prop-types": "error",
     },
   },
 
