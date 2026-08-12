@@ -6,7 +6,7 @@ const Input = ({ label, errorMessage, ...rest }) => {
     <div className="flex flex-col space-y-1 text-left">
       <InputLabel htmlFor={rest.id}>{label}</InputLabel>
       <input
-        className="placeholder:text-[#9A9C9F rounded-lg border border-solid border-[#ECECEC] px-4 py-3 outline-pink-500 placeholder:text-sm"
+        className="rounded-lg border border-solid border-brand-border px-4 py-3 outline-brand-magenta placeholder:text-sm placeholder:text-brand-text-gray"
 
         {...rest}
       />
