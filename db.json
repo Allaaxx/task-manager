@@ -15,13 +15,6 @@
       "status": "done"
     },
     {
-      "id": "3",
-      "title": "Fazer caminhada",
-      "description": "Caminhada de 30 minutos no parque",
-      "time": "afternoon",
-      "status": "not_started"
-    },
-    {
       "id": "4",
       "title": "Organizar mesa de trabalho",
       "description": "Limpar e arrumar a escrivaninha",
