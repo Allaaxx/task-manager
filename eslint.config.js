@@ -1,6 +1,7 @@
 import js from "@eslint/js"
 import { defineConfig, globalIgnores } from "eslint/config"
 import eslintConfigPrettier from "eslint-config-prettier/flat"
+import reactPlugin from "eslint-plugin-react"
 import reactHooks from "eslint-plugin-react-hooks"
 import reactRefresh from "eslint-plugin-react-refresh"
 import simpleImportSort from "eslint-plugin-simple-import-sort"
@@ -20,12 +21,14 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
     plugins: {
+      react: reactPlugin,
       "simple-import-sort": simpleImportSort,
     },
     rules: {
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
       semi: ["error", "always"],
+      "react/prop-types": "off",
     },
   },
 
