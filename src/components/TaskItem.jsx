@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import { useState } from "react"
+import { Link } from "react-router"
 import { toast } from "sonner"
 import { tv } from "tailwind-variants"
 
@@ -33,7 +34,6 @@ const taskItem = tv({
 
 const TaskItem = ({ task, handleCheckboxClick, onDeleteSuccess }) => {
   const [deleteIsLoading, setDeleteIsLoading] = useState(false)
-
   const { container, checkbox } = taskItem({ status: task.status })
 
   const handleDeleteClick = async () => {
@@ -85,9 +85,12 @@ const TaskItem = ({ task, handleCheckboxClick, onDeleteSuccess }) => {
             )}
           </Button>
 
-          <a href="#" className="hover: opacity-75 transition-colors">
+          <Link
+            to={`/tasks/${task.id}`}
+            className="hover: opacity-75 transition-colors"
+          >
             <DetailsIcon />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
