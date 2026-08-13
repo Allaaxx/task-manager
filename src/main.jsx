@@ -3,6 +3,7 @@ import "./index.css"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { createBrowserRouter, RouterProvider } from "react-router"
+import { Toaster } from "sonner"
 
 import App from "./pages/App.jsx"
 import TaskDetailsPage from "./pages/task-details.jsx"
@@ -21,5 +22,12 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />,
+    <Toaster
+      toastOptions={{
+        style: {
+          color: "text-brand-text-gray",
+        },
+      }}
+    />
   </StrictMode>
 )
