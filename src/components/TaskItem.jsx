@@ -1,5 +1,5 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import PropTypes from "prop-types"
-import { useState } from "react"
 import { Link } from "react-router"
 import { toast } from "sonner"
 import { tv } from "tailwind-variants"
@@ -32,24 +32,31 @@ const taskItem = tv({
   },
 })
 
-const TaskItem = ({ task, handleCheckboxClick, onDeleteSuccess }) => {
-  const [deleteIsLoading, setDeleteIsLoading] = useState(false)
+const TaskItem = ({ task, handleCheckboxClick }) => {
+  const queryClient = useQueryClient()
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["deleteTask", task.id],
+    mutationFn: async () => {
+      const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
+        method: "DELETE",
+      })
+      return response.json()
+    },
+  })
   const { container, checkbox } = taskItem({ status: task.status })
 
   const handleDeleteClick = async () => {
-    setDeleteIsLoading(true)
-    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
-      method: "DELETE",
+    mutate(undefined, {
+      onSuccess: () => {
+        queryClient.setQueryData(["tasks"], (oldTasks) => {
+          return oldTasks.filter((item) => item.id !== task.id)
+        })
+        toast.success("Tarefa deletada com sucesso!")
+      },
+      onError: () => {
+        toast.error("Erro ao deletar tarefa")
+      },
     })
-
-    if (!response.ok) {
-      setDeleteIsLoading(false)
-      return toast.error(
-        "Erro ao deletar a tarefa. Por favor, tente novamente."
-      )
-    }
-    onDeleteSuccess(task.id)
-    setDeleteIsLoading(false)
   }
 
   return (
@@ -76,9 +83,9 @@ const TaskItem = ({ task, handleCheckboxClick, onDeleteSuccess }) => {
           <Button
             color="ghost"
             onClick={handleDeleteClick}
-            disabled={deleteIsLoading}
+            disabled={isPending}
           >
-            {deleteIsLoading ? (
+            {isPending ? (
               <LoaderIcon className="h-4 w-4 animate-spin text-brand-text-gray" />
             ) : (
               <TrashIcon className="text-brand-text-gray" />
